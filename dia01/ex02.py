@@ -28,3 +28,4 @@ df["nome"].iloc[-1]
 
 # %%
 df["nome"].tail(1)
+# %%

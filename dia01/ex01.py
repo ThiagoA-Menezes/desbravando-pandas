@@ -23,3 +23,4 @@ desvio
 # %%
 maximo = series.max()
 maximo
+# %%
