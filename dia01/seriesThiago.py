@@ -65,9 +65,12 @@ series_idades.index
 # Busca pela posição do indice, independente da forma como o indice 
 # está estruturado. Ainda é possível passar o intervalo [0:2].
 # Vai garantir a posição.
-series_idades.iloc[0]
+series_idades.iloc[2:4]
+# %%
+# Comportamento similar aos dos dicionários, coloca a chave e ele busca o valor.
+series_idades.loc[2:4]
+
 # %%
 # É possível criar um novo para a serie
 series_idades.name = 'idades'
 series_idades
-# %%
