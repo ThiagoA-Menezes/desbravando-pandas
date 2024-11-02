@@ -67,8 +67,25 @@ df_maior["Name"].iloc[0]
 # %%
 # filtro para verificar quem está em um intervalo
 # por ser vetorial, não podemos usar o and, então é necesário usar o &
+# para criar um novo df, para evitar que o Python altere o dado principal,
+# lembre-se que o python usa referência para tudo, então 
+# coloque a função .copy() ao final do seu filtro ou condição.
+
 condicao = (df_customers["Points"] >= 1000) & (df_customers["Points"] <= 2000)
 condicao
 # %%
 df_customers[condicao].shape
+# %%
+# assim que navega no df pelas colunas
+df_customers[['UUID', 'Name']]
+# %%
+# dessa forma eu posso ordenar a lista de colunas
+colunas = df_customers.columns.tolist()
+colunas.sort()
+colunas
+# %%
+# aqui, eu posso reatribuir o meu df à ele mesmo e usar esses dados com 
+# a coluna ordenada
+
+df_customers[colunas]
 # %%
