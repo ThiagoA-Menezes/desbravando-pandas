@@ -25,3 +25,4 @@ df
 
 # %%
 df.info(memory_usage='deep')
+# %%
