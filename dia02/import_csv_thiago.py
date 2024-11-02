@@ -89,3 +89,29 @@ colunas
 
 df_customers[colunas]
 # %%
+# para Renomear colunas usamos o seguinte comando...
+# e podemos usar um dicionário para fazer isso
+# ele gera um df novo, ele não altera o df anterior
+df_customers = df_customers.rename(columns={'Name' : 'Nome',
+                                             'Points' : 'Pontos'})
+# %%
+# Há uma outra forma de fazer esse rename.
+# quando usamos o inplace, ele muda o df original, diferente do comando anterior
+# por isso com o inplace não é necessário reatribuir ao df
+df_customers.rename(columns={"UUID" : "Id"}, inplace=True)
+df_customers
+# %%
+# Importando outro arquivo para o df.
+# nessa parte do código, colocamos o nome das colunas, 
+# já que o no arquivo não vinha com eles.
+df_p = pd.read_csv("../data/products.csv", 
+                   sep=";", 
+                   #header=None, 
+                   names=['Id', 'Name', 'Description'])
+df_p
+# %%
+# Exercício
+df_p = df_p.rename(columns={'Name':'Nome', 
+                            'Description': 'Descrição'})
+df_p
+# %%
