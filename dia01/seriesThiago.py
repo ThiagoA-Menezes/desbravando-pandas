@@ -1,7 +1,7 @@
 # %%
 # Importando as bibliotecas
 import pandas as pd
-
+import numpy as np
 
 # %%
 # Criando a lista de idades.
@@ -20,6 +20,11 @@ for i in idades:
 variancia = total / (len(idades) - 1)
 
 variancia
+
+# %%
+# Codigo colocado para evitar o python escrever np.float64(<<output>>))
+
+np.set_printoptions(legacy='1.25')
 # %%
 #Pegando a lista e transformando em uma serie de dados 
 # Tranformação para series pandas
@@ -51,6 +56,9 @@ series_idades.describe()
 series_idades.shape[0]
 # %%
 # Navegando na lista
+idades[0] 
+# %%
+# Navegando na serie através  do indice
 series_idades[3]
 # %%
 # Navegando na serie
@@ -68,9 +76,16 @@ series_idades.index
 series_idades.iloc[2:4]
 # %%
 # Comportamento similar aos dos dicionários, coloca a chave e ele busca o valor.
+# Vc usa os proprios indices.
 series_idades.loc[2:4]
 
 # %%
 # É possível criar um novo para a serie
 series_idades.name = 'idades'
 series_idades
+# %%
+series_idades = pd.Series(idades, name="idades")
+series_idades
+# %%
+idades
+# %%

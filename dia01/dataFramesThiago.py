@@ -1,6 +1,11 @@
 # %%
 # Importando as libs:
 import pandas as pd
+import numpy as np
+# %%
+# Comando para fazer o python não imprimir o dtype
+np.set_printoptions(legacy='1.25')
+
 # %%
 # Vamos criar um dicionário 
 
@@ -20,10 +25,11 @@ df = pd.DataFrame(data)
 df
 # %%
 # Para garantir que é a primeira posição, coloca o iLoc
-df["idade"].loc[0]
+df["idade"].loc[0], df["idade"].iloc[0]
+
 # %%
-# acessando uma linha
-df.iloc[0]
+# acessando uma linha de uma serie
+df.iloc[0], type(df.iloc[0])
 # %%
 # descobrindo os nomes das colunas
 df.columns
@@ -49,4 +55,6 @@ df.describe()
 sumario = df.describe()
 
 sumario['peso']['mean']
+# %%
+sumario.head(2)
 # %%
