@@ -17,6 +17,7 @@ df
 sumario_numericas = df.describe()
 sumario_numericas
 
+
 # %%
 df["nome"].describe()
 

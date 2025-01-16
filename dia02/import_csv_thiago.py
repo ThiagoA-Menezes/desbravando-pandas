@@ -59,6 +59,10 @@ df_customers[condicao]
 df_customers[df_customers['Points'] == df_customers['Points'].max()]["Name"].iloc[0]
 
 # %%
+df_customers[df_customers['Points'] == df_customers['Points'].max()][["Name", "Points"]].iloc[0] 
+# df_customers[df_customers['Points'] == df_customers['Points'].max()][["Name", "Points"]]
+
+# %%
 # Dessa forma conseguimos buscar o maior pontuador, sem chumbar o k
 condicao = df_customers['Points'] == df_customers['Points'].max()
 df_maior = df_customers[condicao]
@@ -66,20 +70,34 @@ df_maior["Name"].iloc[0]
 
 # %%
 # filtro para verificar quem está em um intervalo
+
+condicao = (df_customers["Points"] >= 1000) & (df_customers["Points"] <= 2000)
+condicao
+# %%
 # por ser vetorial, não podemos usar o and, então é necesário usar o &
 # para criar um novo df, para evitar que o Python altere o dado principal,
 # lembre-se que o python usa referência para tudo, então 
 # coloque a função .copy() ao final do seu filtro ou condição.
 
-condicao = (df_customers["Points"] >= 1000) & (df_customers["Points"] <= 2000)
-condicao
+condicao = (df_customers['Points'] >= 1000) & (df_customers['Points'] <= 2000)
+df_1000_2000 = df_customers[condicao].copy()
+
+
+df_1000_2000['Points'] = df_1000_2000["Points"] + 1000
+df_1000_2000
+
 # %%
 df_customers[condicao].shape
 # %%
+# Series de Dados
+df_customers['UUID']
+# %% 
+# Dataframe quando passamos uma Lista
 # assim que navega no df pelas colunas
 df_customers[['UUID', 'Name']]
 # %%
 # dessa forma eu posso ordenar a lista de colunas
+# colunas = list(df_customers.columns)
 colunas = df_customers.columns.tolist()
 colunas.sort()
 colunas
@@ -87,19 +105,23 @@ colunas
 # aqui, eu posso reatribuir o meu df à ele mesmo e usar esses dados com 
 # a coluna ordenada
 
-df_customers[colunas]
-# %%
+df_customers = df_customers[colunas]
+df_customers
+ # %%
 # para Renomear colunas usamos o seguinte comando...
 # e podemos usar um dicionário para fazer isso
-# ele gera um df novo, ele não altera o df anterior
+# ele gera um df novo, ele não altera o df anterior, só altera se reatribuirmos 
+# ao dataframe
 df_customers = df_customers.rename(columns={'Name' : 'Nome',
                                              'Points' : 'Pontos'})
+df_customers
 # %%
 # Há uma outra forma de fazer esse rename.
 # quando usamos o inplace, ele muda o df original, diferente do comando anterior
 # por isso com o inplace não é necessário reatribuir ao df
 df_customers.rename(columns={"UUID" : "Id"}, inplace=True)
 df_customers
+
 # %%
 # Importando outro arquivo para o df.
 # nessa parte do código, colocamos o nome das colunas, 
@@ -112,6 +134,19 @@ df_p
 # %%
 # Exercício
 df_p = df_p.rename(columns={'Name':'Nome', 
-                            'Description': 'Descrição'})
+                            'Description': 'Descrição',
+                            "Id" : "Localizador"})
+df_p
+# %%
+# Extraindo para virar uma lista e posteriormente adicioná-la a um dicionário.
+df_pcolunas = df_p.columns.tolist()
+df_pcolunas
+# %%
+# Renomeando as colunas sem a necessidade de usar a reatribuição.
+
+df_p.rename(columns={"Localizador" : "Id",
+                    "Nome" : "Comandos",
+                     "Descrição" : "Texto Livre"}, inplace=True)
+
 df_p
 # %%
